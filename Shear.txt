@@ -1,0 +1,55 @@
+void xsh(CDC *pDC, int P[])
+{
+	CPoint sh_x[4];	double shearx=1.2;	int tx=-648,ty=347;
+	int temp3[8]={P[0]+tx,P[1],P[2]+tx,P[3],P[4]+tx,P[5],P[6]+tx,P[7]};
+	int temp4[8]={temp3[0]+shearx*(ty-temp3[1]),temp3[1],temp3[2]+shearx*(ty-temp3[3]), temp3[3] ,temp3[4]+shearx*(ty-temp3[5]),temp3[5],temp3[6]+shearx*(ty-temp3[7]),temp3[7]};
+	tx=648;ty=347;
+	int P2[8]={temp4[0]+tx,temp4[1],temp4[2]+tx,temp4[3],temp4[4]+tx,temp4[5] ,temp4[6]+tx, temp4[7]};
+	sh_x[0] = CPoint(P2[0],P2[1]);	sh_x[1] = CPoint(P2[2],P2[3]);
+	sh_x[2] = CPoint(P2[4],P2[5]);	sh_x[3] = CPoint(P2[6],P2[7]);
+	pDC->Polygon(sh_x,4);
+}
+void xyref(CDC *pDC,int P[])
+{
+	CPoint x_refy[4];	double yref=20,shearx=0.5;	int tx=-648,ty=347;
+	int temp5[8]={P[0]+tx,P[1],P[2]+tx,P[3],P[4]+tx,P[5],P[6]+tx,P[7]};
+	int temp6[8]={temp5[0]+shearx*(ty-temp5[1])-shearx*yref,temp5[1],temp5[2]+ shearx*(ty-temp5[3])-shearx*yref,temp5[3],temp5[4]+shearx*(ty-temp5[5])-shearx*yref,temp5[5],temp5[6]+ shearx*(ty-temp5[7])-shearx*yref,temp5[7]};
+	tx=694;
+	int P3[8]={temp6[0]+tx,temp6[1],temp6[2]+tx,temp6[3],temp6[4]+tx,temp6[5], temp6[6]+tx,temp6[7]};
+	x_refy[0] = CPoint(P3[0],P3[1]);	x_refy[1] = CPoint(P3[2],P3[3]);
+	x_refy[2] = CPoint(P3[4],P3[5]);	x_refy[3] = CPoint(P3[6],P3[7]);
+	pDC->Polygon(x_refy,4);
+}
+void ysh(CDC *pDC,int P[])
+{
+	CPoint sh_y[4];	double sheary=0.5;	int tx=-648,ty=347;
+	int temp1[8]={P[0]+tx,P[1],P[2]+tx,P[3],P[4]+tx,P[5],P[6]+tx,P[7]};
+	int temp2[8]={temp1[0],(ty-temp1[1])-sheary*temp1[0],temp1[2],(ty-temp1[3])-sheary*temp1[2],temp1[4],(ty-temp1[5])-sheary*temp1[4],temp1[6],(ty-temp1[7])-sheary*temp1[6]};
+	tx=648;ty=170;
+	int P2[8]={temp2[0]+tx,temp2[1]+ty,temp2[2]+tx,temp2[3]+ty,temp2[4]+tx, temp2[5]+ty,temp2[6]+tx,temp2[7]+ty};
+	sh_y[0] = CPoint(P2[0],P2[1]);sh_y[1] = CPoint(P2[2],P2[3]);
+sh_y[2] = CPoint(P2[4],P2[5]);sh_y[3] = CPoint(P2[6],P2[7]);
+	pDC->Polygon(sh_y,4);
+}
+void yxref(CDC *pDC,int P[])
+{
+	CPoint y_refx[4];	double xref=300,sheary=0.1; 	int tx=-648,ty=347;
+	int temp7[8]={P[0]+tx,P[1],P[2]+tx,P[3],P[4]+tx,P[5],P[6]+tx,P[7]};
+	int temp8[8]={temp7[0],(ty-temp7[1])-sheary*temp7[0]+sheary*xref,temp7[2],(ty-temp7[3])-sheary*temp7[2]+sheary*xref,temp7[4],(ty-temp7[5])-sheary*temp7[4]+sheary*xref,temp7[6],(ty-temp7[7])-sheary*temp7[6]+sheary*xref};
+	tx=648;
+	int P4[8]={temp8[0]+tx,temp8[1],temp8[2]+tx,temp8[3],temp8[4]+tx,temp8[5], temp8[6]+tx,temp8[7]};
+	y_refx[0] = CPoint(P4[0],P4[1]);	y_refx[1] = CPoint(P4[2],P4[3]);
+	y_refx[2] = CPoint(P4[4],P4[5]);	y_refx[3] = CPoint(P4[6],P4[7]);	
+pDC->Polygon(y_refx,4);
+
+/*int P[8]={694,347,694,147,894,147,894,347};    	CPoint pts[4];
+	pts[0] = CPoint(P[0],P[1]);	pts[1] = CPoint(P[2],P[3]);	pts[2] = CPoint(P[4],P[5]);
+	pts[3] = CPoint(P[6],P[7]);	pDC->Polygon(pts,4);
+	pDC->MoveTo(648,0);	pDC->LineTo(648,694);	pDC->MoveTo(0,347);
+	pDC->LineTo(1366,347);
+	//xsh(pDC,P);
+	//ysh(pDC,P);
+	//yxref(pDC,P);
+	xyref(pDC,P);*/
+
+}
