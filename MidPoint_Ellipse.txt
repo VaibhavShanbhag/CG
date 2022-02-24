@@ -1,0 +1,49 @@
+void mid_ellipse(int x0,int y0,int radx,int rady,CDC* pDC)
+{
+	int f1,f2,x=0,y=rady;
+	f1 = (rady*rady)-(radx*radx*rady)+(radx*radx/4);
+	
+	pDC->SetPixel(x0, y0+rady, RGB(0,0,0));
+	pDC->SetPixel(x0, y0-rady, RGB(0,0,0));
+	pDC->SetPixel(x0+radx, y0, RGB(0,0,0));
+	pDC->SetPixel(x0-radx, y0, RGB(0,0,0));
+	
+	while(2*rady*rady*x<2*radx*radx*y)
+	{
+	
+			if (f1>0)
+			{
+				y--;x++;f1+=(2*rady*rady*x)-(2*radx*radx*y)+(rady*rady);
+			}
+
+			else
+			{
+				x++;f1+=(2*rady*rady*x)+(rady*rady);
+			}
+
+			pDC->SetPixel(x0+x, y0+y, RGB(0,0,0));
+			pDC->SetPixel(x0-x, y0+y, RGB(0,0,0));
+			pDC->SetPixel(x0+x, y0-y, RGB(0,0,0));
+			pDC->SetPixel(x0-x, y0-y, RGB(0,0,0));
+	}
+	f2=(rady*rady*(x+0.5)*(x+0.5))+(radx*radx*(y-1)*(y-1))-(radx*radx*rady*rady);
+	while(x<=radx && y>=0)
+	{
+	
+			if (f2>0)
+			{
+				y--;f2-=(2*radx*radx*y)+(radx*radx);
+			}
+
+			else
+			{
+				x++;y--;f2+=(2*rady*rady*x)-(2*radx*radx*y)+(radx*radx);
+			}
+
+			pDC->SetPixel(x0+x, y0+y, RGB(0,0,0));
+			pDC->SetPixel(x0-x, y0+y, RGB(0,0,0));
+			pDC->SetPixel(x0+x, y0-y, RGB(0,0,0));
+			pDC->SetPixel(x0-x, y0-y, RGB(0,0,0));
+	}
+
+}
