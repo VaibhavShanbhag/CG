@@ -1,0 +1,51 @@
+int P[8] = { 818,92,969,92,931,158,777,158,};
+	CPoint pts[4];
+	pts[0] = CPoint(P[0], P[1]);
+	pts[1] = CPoint(P[2], P[3]);
+	pts[2] = CPoint(P[4], P[5]);
+	pts[3] = CPoint(P[6], P[7]);
+	pDC->Polygon(pts, 4);
+	pDC->MoveTo(648, 0);
+	pDC->LineTo(648, 694);
+	pDC->MoveTo(0, 280);
+	pDC->LineTo(1366, 280);
+		
+	//ALONG Y-axis
+	CPoint pts_ry[4];
+	int P1[8] = { 650 - (P[0] - 650),P[1],650 - (P[2] - 650),P[3],650 - (P[4] - 650),P[5],650 - (P[6] - 650),P[7] };
+	pts_ry[0] = CPoint(P1[0], P1[1]);
+	pts_ry[1] = CPoint(P1[2], P1[3]);
+	pts_ry[2] = CPoint(P1[4], P1[5]);
+	pts_ry[3] = CPoint(P1[6], P1[7]);
+	pDC->Polygon(pts_ry, 4);
+	
+	
+	//ALONG X-axis
+	CPoint pts_rx[4];
+	int P2[8] = { P[0],580 - P[1],P[2],580 - P[3],P[4],580 - P[5],P[6],580 - P[7] };
+	pts_rx[0] = CPoint(P2[0], P2[1]);
+	pts_rx[1] = CPoint(P2[2], P2[3]);
+	pts_rx[2] = CPoint(P2[4], P2[5]);
+	pts_rx[3] = CPoint(P2[6], P2[7]);
+	pDC->Polygon(pts_rx, 4);
+
+	
+	//ALONG X= -Y
+	CPoint pts_rxy[4];
+	int P3[8] = { 650 - (P[0] - 650),580 - P[1],650 - (P[2] - 650),580 - P[3],650 - (P[4] - 650),580 - P[5],650 - (P[6] - 650),580 - P[7] };
+	pts_rxy[0] = CPoint(P3[0], P3[1]);
+	pts_rxy[1] = CPoint(P3[2], P3[3]);
+	pts_rxy[2] = CPoint(P3[4], P3[5]);
+	pts_rxy[3] = CPoint(P3[6], P3[7]);
+	pDC->Polygon(pts_rxy, 4);
+
+	
+	//ALONG X=Y
+	CPoint pts_rxEQy[4];
+	int temp[8] = { 750 + 347 - P[1],347 - (P[0] - 750),750 + 347 - P[3],347 - (P[2] - 750),750 + 347 - P[5],347 - (P[4] - 750),750 + 347 - P[7],347 - (P[6] - 750) };
+	int P4[8] = { 347 - P[1] + 750,P[0] + 694,P[3] + (750),P[2],P[5] + (750),P[4],P[7] + (750),P[6] };
+	pts_rxEQy[0] = CPoint(temp[0], temp[1]);
+	pts_rxEQy[1] = CPoint(temp[2], temp[3]);
+	pts_rxEQy[2] = CPoint(temp[4], temp[5]);
+	pts_rxEQy[3] = CPoint(temp[6], temp[7]);
+	pDC->Polygon(pts_rxEQy, 4);
