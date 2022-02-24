@@ -1,0 +1,19 @@
+void DDA(int x1, int y1, int x2, int y2, CDC* pDC){
+	int dx = x2-x1;
+	int dy = y2-y1;
+	int steps;
+
+	(dx >= dy)? steps = dx : steps = dy;
+
+	int xinc = dx/steps;
+	int yinc = dy/steps;
+
+	int x = x1;
+	int y = y1;
+
+	for(int i=0; i<=steps; i++){
+		pDC->SetPixel(x,y,RGB(0,255,0));
+		x += xinc;
+		y += yinc;
+	}
+}
