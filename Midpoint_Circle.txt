@@ -1,0 +1,31 @@
+void midcircle(int x0,int y0,int rad,CDC* pDC)
+{
+	int f, x, y, ddfx, ddfy ;
+	f = (1 - rad);
+		ddfx = 1;
+	ddfy = -2*rad;
+		x = 0;
+		y = rad;	
+	pDC->SetPixel(x0, y0+rad, RGB(0,0,0));
+	pDC->SetPixel(x0, y0-rad, RGB(0,0,0));
+	pDC->SetPixel(x0+rad, y0, RGB(0,0,0));
+	pDC->SetPixel(x0-rad, y0, RGB(0,0,0));	
+	while(x<y)
+	{	
+			if (f>0)
+			{	y--;ddfy +=2;f += ddfy;	}
+
+			else
+			{	x++;ddfx +=2;f +=ddfx;	}
+
+			pDC->SetPixel(x0+x, y0+y, RGB(0,0,0));
+			pDC->SetPixel(x0-x, y0+y, RGB(0,0,0));
+			pDC->SetPixel(x0+x, y0-y, RGB(0,0,0));
+			pDC->SetPixel(x0-x, y0-y, RGB(0,0,0));
+			pDC->SetPixel(x0+y, y0+x, RGB(0,0,0));
+			pDC->SetPixel(x0-y, y0+x, RGB(0,0,0));
+			pDC->SetPixel(x0+y, y0-x, RGB(0,0,0));
+			pDC->SetPixel(x0-y, y0-x, RGB(0,0,0));
+	}
+
+}
