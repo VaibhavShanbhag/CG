@@ -1,0 +1,46 @@
+int P[8] = { 818,92,969,92,931,158,777,158,};
+	
+	//Initial Figure
+	CPoint pts[4], pts_ry[4], pts_rx[4];
+	pts[0] = CPoint(P[0], P[1]);
+	pts[1] = CPoint(P[2], P[3]);
+	pts[2] = CPoint(P[4], P[5]);
+	pts[3] = CPoint(P[6], P[7]);
+	pDC->Polygon(pts, 4);
+	pDC->MoveTo(648, 0);
+	pDC->LineTo(648, 694);
+	pDC->MoveTo(0, 280);
+	pDC->LineTo(1366, 280);
+
+	//Translation
+	CPoint pts_trans[4];
+	int tx = 300, ty = -80;
+	int P1[8] = { P[0] + tx,P[1] + ty,P[2] + tx,P[3] + ty,P[4] + tx,P[5] + ty,P[6] + tx,P[7] + ty };
+	pts_trans[0] = CPoint(P1[0], P1[1]);
+	pts_trans[1] = CPoint(P1[2], P1[3]);
+	pts_trans[2] = CPoint(P1[4], P1[5]);
+	pts_trans[3] = CPoint(P1[6], P1[7]);
+	pDC->Polygon(pts_trans, 4);
+
+	//Rotation
+	CPoint pts_rot[4];
+	double temp[8] = { P[0] - 758,P[1] - 300,P[2] - 758,P[3] - 300,P[4] - 758,P[5] - 300,P[6] - 758,P[7] - 300 };
+	int deg = -90;
+	double ang = deg * 3.14 / 180.0;
+	double rot_P[8] = { temp[0] * cos(ang) - temp[1] * sin(ang),temp[0] * sin(ang) + temp[1] * cos(ang),temp[2] * cos(ang) - temp[3] * sin(ang),temp[2] * sin(ang) + temp[3] * cos(ang),temp[4] * cos(ang) - temp[5] * sin(ang),temp[4] * sin(ang) + temp[5] * cos(ang),temp[6] * cos(ang) - temp[7] * sin(ang),temp[6] * sin(ang) + temp[7] * cos(ang) };
+	double P2[8] = { rot_P[0] + 758,rot_P[1] + 300,rot_P[2] + 758,rot_P[3] + 300,rot_P[4] + 758,rot_P[5] + 300,rot_P[6] + 758,rot_P[7] + 300 };
+	pts_rot[0] = CPoint(P2[0], P2[1]);
+	pts_rot[1] = CPoint(P2[2], P2[3]);
+	pts_rot[2] = CPoint(P2[4], P2[5]);
+	pts_rot[3] = CPoint(P2[6], P2[7]);
+	pDC->Polygon(pts_rot, 4);
+
+	//Scaling
+	CPoint pts_scale[4];
+	double sx = 1, sy = 2.6;
+	double P5[8] = { P[0] * sx,P[1] * sy,P[2] * sx,P[3] * sy,P[4] * sx,P[5] * sy,P[6] * sx,P[7] * sy };
+	pts_scale[0] = CPoint(P5[0], P5[1]);
+	pts_scale[1] = CPoint(P5[2], P5[3]);
+	pts_scale[2] = CPoint(P5[4], P5[5]);
+	pts_scale[3] = CPoint(P5[6], P5[7]);
+	pDC->Polygon(pts_scale, 4);
